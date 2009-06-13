@@ -1,0 +1,44 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+	<head>
+	  <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+
+		<title><%=@title || "Socialism"%></title>
+		<meta name="description" content="<%=@description || "Generic Social App"%>"/>
+
+		<%= javascript_include_tag "prototype.js" %>
+		<%= javascript_include_tag "scriptaculous.js" %>	
+		<%= stylesheet_link_tag "application" %>
+		<%= javascript_include_tag "application.js" %>
+
+	  <%= yield :head %>
+	</head>
+
+	<body>
+
+		<table width="100%">
+			<tr>
+				<td><h1><a href="/">Socialism</a></h1></td>
+				<td align="right">
+					<% if logged_in? %>
+						<a href="/logout">Logout</a>
+					<% else %>
+						<a href="/signup">Sign-up</a> or <a href="/login">Login</a>
+					<% end %>
+				</td>
+			</tr>
+		</table>
+		<hr/>
+		
+		<% [:notice, :warning, :error].each do |f| %>
+			<% if flash[f] %>
+	      <div class="<%=f.to_s%>"><%= flash[f] %></div>
+	    <% end %>
+		<% end %>
+
+		<%=yield%>
+
+	</body>
+</html>
+				
