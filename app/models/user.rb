@@ -19,12 +19,12 @@ class User < ActiveRecord::Base
   validates_uniqueness_of   :email
   validates_format_of       :email,    :with => Authentication.email_regex, :message => Authentication.bad_email_message
 
-  
+  has_one :user_profile
 
   # HACK HACK HACK -- how to do attr_accessible from here?
   # prevents a user from submitting a crafted form that bypasses activation
   # anything else you want your user to change should be added here.
-  attr_accessible :login, :email, :name, :password, :password_confirmation, :first_name, :last_name
+  attr_accessible :login, :email, :name, :password, :password_confirmation, :first_name, :last_name, :user_profile
 
 
 
@@ -47,16 +47,6 @@ class User < ActiveRecord::Base
 
   def email=(value)
     write_attribute :email, (value ? value.downcase : nil)
-  end
-
-  def name
-    [self.first_name, self.last_name].join(" ")
-  end
-  
-  def name=(value)
-    n = value.split(" ")
-    self.first_name = n.first
-    self.last_name = n.last
   end
   
   protected

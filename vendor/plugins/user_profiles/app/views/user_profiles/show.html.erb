@@ -1,0 +1,39 @@
+<h1>User Profile for <%=current_user.name%></h1>
+
+<p>
+  <b>Name:</b>
+  <%=h @user_profile.name %>
+</p>
+
+<p>
+  <b>Address:</b>
+  <%=h @user_profile.address %>
+</p>
+
+<p>
+  <b>Address2:</b>
+  <%=h @user_profile.address2 %>
+</p>
+
+<p>
+  <b>City:</b>
+  <%=h @user_profile.city %>
+</p>
+
+<p>
+  <b>State:</b>
+  <%=h @user_profile.state %>
+</p>
+
+<p>
+  <b>Postal code:</b>
+  <%=h @user_profile.postal_code %>
+</p>
+
+<p>
+  <b>Country:</b>
+  <%=h @user_profile.country %>
+</p>
+
+
+<%= link_to 'Edit', edit_user_profile_path(@user_profile) %>

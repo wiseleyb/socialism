@@ -1,0 +1,19 @@
+UserProfiles
+============
+
+Introduction goes here.
+
+
+Example
+=======
+
+Example goes here.
+
+
+TODO
+====
+auto inject has_one :user_profile into user model
+auto inject attr_accessable into user model
+write script to copy migrations
+
+Copyright (c) 2009 [name of plugin creator], released under the MIT license
