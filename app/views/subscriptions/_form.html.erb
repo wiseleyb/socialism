@@ -1,0 +1,94 @@
+<% form_for(@subscription) do |f| %>
+  <%= f.error_messages %>
+
+	<h2>Billing Information</h2>
+	<table width="600px">
+		<tr valign="top">
+			<td>
+				<% form_for(@user_profile) do |up| %>
+				  <%= up.error_messages %>
+
+				  <p>
+				    <%= up.label :first_name %><br />
+				    <%= up.text_field :first_name %>
+				  </p>
+
+				  <p>
+				    <%= up.label :last_name %><br />
+				    <%= up.text_field :last_name %>
+				  </p>
+
+				  <p>
+				    <%= up.label :address %><br />
+				    <%= up.text_field :address %>
+				  </p>
+				  <p>
+				    <%= up.label :address2 %><br />
+				    <%= up.text_field :address2 %>
+				  </p>
+				  <p>
+				    <%= up.label :city %><br />
+				    <%= up.text_field :city %>
+				  </p>
+				  <p>
+				    <%= up.label :state %><br />
+				    <%= up.text_field :state %>
+				  </p>
+				  <p>
+				    <%= up.label :postal_code %><br />
+				    <%= up.text_field :postal_code %>
+				  </p>
+				  <p>
+				    <%= up.label :country %><br />
+				    <%= up.text_field :country %>
+				  </p>
+				<% end %>
+			</td>
+			<td>
+				<p> 
+				<label for="credit_card_type">Credit Card Type *</label><br/> 
+				<select name="order[type]" id="credit_card_type"> 
+					<%= options_for_select({ "Visa" => "visa", "MasterCard" => "master", "Discover" => "discover", "American Express" => "american_express" }, @credit_card.type) %> 
+				</select> 
+				</p> 
+
+				<p> 
+					<label for="credit_card_number">Card Number *</label><br/> 
+					<% if ENV['RAILS_ENV'] == 'development' %>
+						<%= text_field :credit_card, :number, :maxlength => 19, :class=>"text" %> 
+	 				<% else %>
+						<%= text_field :credit_card, :number, :maxlength => 19, :class=>"text", :autocomplete => :off %> 
+					<% end %>
+				</p>
+
+				<p> 
+					<label for="credit_card_month">Expiration Date *</label><br/> 
+					<select id="credit_card_month" name="order[month]"> 
+						<%= options_for_select(%w(1 2 3 4 5 6 7 8 9 10 11 12), @credit_card.month.to_s) %> 
+					</select> 
+					/ 
+					<select id="credit_card_year" name="order[year]"> 
+						<%
+						year = Date.today.year
+						years = []
+						12.times do |i|
+							years << year += 1
+						end
+						%>
+						<%= options_for_select(years, @credit_card.year.to_i) %> 
+					</select> 
+				</p> 
+
+				<p> 
+					<label for="credit_card_verification_value"><abbr title="Card Verification Value">CVV</abbr>/<abbr title="Card Validation Check">CVC</abbr> 
+						*</label><br/>
+					<%= text_field :credit_card, :verification_value, :class => "cvv", :maxlength => 4 %> 
+				</p>
+				<p>(All fields marked with * are mandatory)</p>
+			</td>
+		</tr>
+	</table>
+  <p>
+    <%= f.submit 'Update' %>
+  </p>
+<% end %>

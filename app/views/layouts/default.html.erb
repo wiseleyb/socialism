@@ -22,7 +22,9 @@
 				<td><h1><a href="/">Socialism</a></h1></td>
 				<td align="right">
 					<% if logged_in? %>
-						<a href="/user_profiles">Profile</a>
+						<%=link_to "Subscription", subscriptions_path %>
+						&nbsp;|&nbsp;
+						<%=link_to "Profile", user_profiles_path %>
 						&nbsp;|&nbsp;
 						<a href="/logout">Logout</a>
 					<% else %>

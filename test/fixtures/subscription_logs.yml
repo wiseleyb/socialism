@@ -1,0 +1,19 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  subscription_key: 1
+  user_id: 1
+  product_id: 1
+  start_date: 2009-06-14 08:48:30
+  end_date: 2009-06-14 08:48:30
+  failed_payment_attempts: 1
+  active: false
+
+two:
+  subscription_key: 1
+  user_id: 1
+  product_id: 1
+  start_date: 2009-06-14 08:48:30
+  end_date: 2009-06-14 08:48:30
+  failed_payment_attempts: 1
+  active: false
